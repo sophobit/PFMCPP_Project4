@@ -133,6 +133,7 @@ int main()
     std::cout << "result of it.divide(): " << result3 << std::endl;
     std::cout << "result of dt.subtract(): " << result4 << std::endl;
 
-    
+    it.divide(1,0);  //Can you solve this crash via your implementation of divide()?
+
     std::cout << "good to go!" << std::endl;
 }
