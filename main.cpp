@@ -59,9 +59,8 @@ float FloatType::multiply(float lhs, float rhs )
 
 float FloatType::divide(float num, float den )
 { 
-    if (abs(den) > 0) return (num/den);    
+    if (den <= 0) std::cout << "Divide-by-zero warning  " << std::endl;;    
     
-    std::cout << "Divide-by-zero warning  " << std::endl;
     return (num/den);      
 }
 
@@ -90,9 +89,8 @@ double DoubleType::multiply(double lhs, double rhs )
 
 double DoubleType::divide(double num, double den )
 { 
-    if (abs(den) > 0) return (num/den);    
+    if (den <= 0) std::cout << "Divide-by-zero warning  " << std::endl;;    
     
-    std::cout << "Divide-by-zero warning  " << std::endl;
     return (num/den);      
 }
 
@@ -137,15 +135,17 @@ int main()
     
     auto result1 = ft.add( 30.2f, 90.13f );
     auto result2 = ft.multiply( 243.1f, 3.5f );
-    auto result3 = it.divide ( 100, 43 );
+    auto result3 = it.divide ( 100, 0 );
     auto result4 = dt.subtract ( 355.002, 3444.2 );
+    auto result5 = ft.divide ( 1, 0 );
+    auto result6 = dt.divide ( 1, 0 );
     
     std::cout << "result of ft.add(): " << result1 << std::endl;
     std::cout << "result of ft.multiply(): " << result2 << std::endl;
     std::cout << "result of it.divide(): " << result3 << std::endl;
     std::cout << "result of dt.subtract(): " << result4 << std::endl;
-
-    it.divide(1,0);  //Can you solve this crash via your implementation of divide()?
+    std::cout << "result of ft.divide(): " << result5 << std::endl;
+    std::cout << "result of dt.divide(): " << result6 << std::endl;
     
     std::cout << "good to go!" << std::endl;
 }
