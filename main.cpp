@@ -31,6 +31,8 @@
 
  Wait for my code review.
  */
+#include <math.h> // I needed to do an ABS function...
+#include <iostream> // to print a divide-by-zero console message
 
 struct FloatType
 {
@@ -55,9 +57,12 @@ float FloatType::multiply(float lhs, float rhs )
     return lhs * rhs;
 }
 
-float FloatType::divide(float lhs, float rhs )
-{   
-    return lhs / rhs;
+float FloatType::divide(float num, float den )
+{ 
+    if (abs(den) > 0) return (num/den);    
+    
+    std::cout << "Divide-by-zero warning  " << std::endl;
+    return (num/den);      
 }
 
 struct DoubleType
@@ -83,9 +88,12 @@ double DoubleType::multiply(double lhs, double rhs )
     return lhs * rhs;
 }
 
-double DoubleType::divide(double lhs, double rhs )
-{   
-    return lhs / rhs;
+double DoubleType::divide(double num, double den )
+{ 
+    if (abs(den) > 0) return (num/den);    
+    
+    std::cout << "Divide-by-zero warning  " << std::endl;
+    return (num/den);      
 }
 
 struct IntType
@@ -111,12 +119,16 @@ int IntType::multiply(int lhs, int rhs )
     return lhs * rhs;
 }
 
-int IntType::divide(int lhs, int rhs )
-{   
-    return lhs / rhs;
+int IntType::divide(int num, int den )
+{ 
+    if (den != 0) return (num/den);
+    
+    std::cout << "Cannot Divide Int by Zero! " << std::endl;
+    return 0;
 }
 
 #include <iostream>
+
 int main()
 {
     FloatType ft;
@@ -125,7 +137,7 @@ int main()
     
     auto result1 = ft.add( 30.2f, 90.13f );
     auto result2 = ft.multiply( 243.1f, 3.5f );
-    auto result3 = it.divide ( 144, 12 );
+    auto result3 = it.divide ( 100, 43 );
     auto result4 = dt.subtract ( 355.002, 3444.2 );
     
     std::cout << "result of ft.add(): " << result1 << std::endl;
@@ -134,6 +146,6 @@ int main()
     std::cout << "result of dt.subtract(): " << result4 << std::endl;
 
     it.divide(1,0);  //Can you solve this crash via your implementation of divide()?
-
+    
     std::cout << "good to go!" << std::endl;
 }
